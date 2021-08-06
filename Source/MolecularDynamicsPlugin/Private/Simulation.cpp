@@ -399,6 +399,8 @@ void ASimulation::AddMolecule(FString MoleculeName, FVector Position)
 	AMolecule* NewMolecule = GetWorld()->SpawnActor<AMolecule>(GetActorLocation(), GetActorRotation(), SpawnInfo);
 	NewMolecule->AttachToActor(SimulationCell, FAttachmentTransformRules::SnapToTargetIncludingScale);
 	NewMolecule->SetActorRelativeLocation(Position);
+	FRotator RandomRotation = FRotator(FMath::FRandRange(-180.f, 180.f), FMath::FRandRange(-180.f, 180.f), FMath::FRandRange(-180.f, 180.f));
+	NewMolecule->SetActorRotation(RandomRotation);
 
 	if (!this->PrototypeMolecules.Contains(TEXT("Water")))
 	{
