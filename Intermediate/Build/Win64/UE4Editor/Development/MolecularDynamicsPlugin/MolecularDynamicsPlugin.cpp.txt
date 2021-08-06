@@ -1,0 +1,2 @@
+C:\GitHub Repos\DynamicsPlugin\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Definitions.MolecularDynamicsPlugin.h
+C:\GitHub Repos\DynamicsPlugin\Plugins\MolecularDynamicsPlugin\Source\MolecularDynamicsPlugin\Public\MolecularDynamicsPlugin.h

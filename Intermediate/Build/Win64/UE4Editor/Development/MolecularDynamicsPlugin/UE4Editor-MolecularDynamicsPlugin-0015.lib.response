@@ -1,0 +1,14 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-MolecularDynamicsPlugin-0015.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\GitHub Repos\DynamicsPlugin\Intermediate\Build\Win64\DynamicsPluginEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"C:\GitHub Repos\DynamicsPlugin\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Module.MolecularDynamicsPlugin.cpp.obj"
+"C:\GitHub Repos\DynamicsPlugin\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Module.MolecularDynamicsPlugin.gen.cpp.obj"
+"C:\GitHub Repos\DynamicsPlugin\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Default.rc2.res"
+/OUT:"C:\GitHub Repos\DynamicsPlugin\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\UE4Editor-MolecularDynamicsPlugin-0015.lib"
+/INCLUDE:IMPLEMENT_MODULE_MolecularDynamicsPlugin

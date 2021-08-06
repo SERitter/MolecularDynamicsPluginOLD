@@ -1,0 +1,23 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.MolecularDynamicsPlugin.cpp.obj": [
+			"Atom.cpp.obj",
+			"Bond.cpp.obj",
+			"MolecularDynamicsPlugin.cpp.obj",
+			"Molecule.cpp.obj",
+			"Simulation.cpp.obj",
+			"SimulationCell.cpp.obj"
+		],
+		"Module.MolecularDynamicsPlugin.gen.cpp.obj": [
+			"Atom.gen.cpp.obj",
+			"Bond.gen.cpp.obj",
+			"MolecularDynamicsPlugin.init.gen.cpp.obj",
+			"Molecule.gen.cpp.obj",
+			"MoleculeConcentration.gen.cpp.obj",
+			"Reaction.gen.cpp.obj",
+			"Simulation.gen.cpp.obj",
+			"SimulationCell.gen.cpp.obj"
+		]
+	}
+}
