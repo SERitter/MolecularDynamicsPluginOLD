@@ -16,8 +16,8 @@ struct FLinearColor;
 #endif
 #define MOLECULARDYNAMICSPLUGIN_Bond_generated_h
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_SPARSE_DATA
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_RPC_WRAPPERS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_SPARSE_DATA
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execUpdateBondLength); \
 	DECLARE_FUNCTION(execUpdateBondEnergy); \
@@ -34,7 +34,7 @@ struct FLinearColor;
 	DECLARE_FUNCTION(execInitBond);
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execUpdateBondLength); \
 	DECLARE_FUNCTION(execUpdateBondEnergy); \
@@ -51,7 +51,7 @@ struct FLinearColor;
 	DECLARE_FUNCTION(execInitBond);
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_INCLASS_NO_PURE_DECLS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesABond(); \
 	friend struct Z_Construct_UClass_ABond_Statics; \
@@ -60,7 +60,7 @@ public: \
 	DECLARE_SERIALIZER(ABond)
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_INCLASS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_INCLASS \
 private: \
 	static void StaticRegisterNativesABond(); \
 	friend struct Z_Construct_UClass_ABond_Statics; \
@@ -69,7 +69,7 @@ public: \
 	DECLARE_SERIALIZER(ABond)
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_STANDARD_CONSTRUCTORS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ABond(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ABond) \
@@ -82,7 +82,7 @@ private: \
 public:
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_ENHANCED_CONSTRUCTORS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ABond(ABond&&); \
@@ -93,7 +93,7 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ABond); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ABond)
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_PRIVATE_PROPERTY_OFFSET \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__AtomA() { return STRUCT_OFFSET(ABond, AtomA); } \
 	FORCEINLINE static uint32 __PPO__AtomB() { return STRUCT_OFFSET(ABond, AtomB); } \
 	FORCEINLINE static uint32 __PPO__Name() { return STRUCT_OFFSET(ABond, Name); } \
@@ -106,27 +106,27 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ABond); \
 	FORCEINLINE static uint32 __PPO__Color() { return STRUCT_OFFSET(ABond, Color); }
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_13_PROLOG
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_GENERATED_BODY_LEGACY \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_13_PROLOG
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_PRIVATE_PROPERTY_OFFSET \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_SPARSE_DATA \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_RPC_WRAPPERS \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_INCLASS \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_STANDARD_CONSTRUCTORS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_PRIVATE_PROPERTY_OFFSET \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_SPARSE_DATA \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_RPC_WRAPPERS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_INCLASS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_GENERATED_BODY \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_PRIVATE_PROPERTY_OFFSET \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_SPARSE_DATA \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_INCLASS_NO_PURE_DECLS \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_ENHANCED_CONSTRUCTORS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_PRIVATE_PROPERTY_OFFSET \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_SPARSE_DATA \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_INCLASS_NO_PURE_DECLS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -134,7 +134,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> MOLECULARDYNAMICSPLUGIN_API UClass* StaticClass<class ABond>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h
+#define CURRENT_FILE_ID UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Bond_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

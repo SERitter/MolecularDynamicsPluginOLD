@@ -49,8 +49,8 @@
 #define NDEBUG 1
 #define UE_BUILD_DEVELOPMENT 1
 #define UE_IS_ENGINE_MODULE 0
-#define UE_PROJECT_NAME DynamicsPlugin
-#define UE_TARGET_NAME DynamicsPluginEditor
+#define UE_PROJECT_NAME UnrealDynamics
+#define UE_TARGET_NAME UnrealDynamicsEditor
 #define IMPLEMENT_ENCRYPTION_KEY_REGISTRATION() 
 #define IMPLEMENT_SIGNING_KEY_REGISTRATION() 
 #define DEPRECATED_FORGAME DEPRECATED

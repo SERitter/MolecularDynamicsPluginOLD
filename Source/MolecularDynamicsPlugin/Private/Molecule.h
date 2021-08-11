@@ -5,7 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Atom.h"
+#include "AtomData.h"
 #include "Bond.h"
+#include "MoleculePrototype.h"
+#include "AtomPrototype.h"
+#include "Engine/DataTable.h"
 #include "Components/SphereComponent.h"
 #include "Molecule.generated.h"
 
@@ -18,6 +22,11 @@ public:
 	// Sets default values for this actor's properties
 	AMolecule();
 
+
+	//void InitAtoms();
+
+	void InitMolecule(FMoleculePrototype& Prototype, int32 Index, UDataTable* AtomDataTable);
+	
 	/**
 	 * Initialize a prototype molecule.  Calculates total mass and dipole moment.  Position etc are set to zero.
 	 * @param NewName - Name of the molecule ("water" etc).
@@ -26,19 +35,19 @@ public:
 	 * @param NewBonds - List of bonds between atoms.
 	 * @param NewDipoleMoment - Overall dipole moment of the molecule.
 	 */
-	void InitMoleculePrototype(
-		FString NewName,
-		FString NewMolecularFormula,
-		TArray<AAtom*> NewAtoms,
-		TArray<ABond*> NewBonds,
-		FVector NewDipoleMoment
-	);
+	//void InitMoleculePrototype(
+	//	FString NewName,
+	//	FString NewMolecularFormula,
+	//	TArray<AAtom*> NewAtoms,
+	//	TArray<ABond*> NewBonds,
+	//	FVector NewDipoleMoment
+	//);
 
 	/**
 	 * Copy molecule properties from the Source molecule, including position etc.  Creates new AAtom and ABond objects as copies of those in the prototype.
 	 * @param Source - Molecule object to copy properties from.
 	 */
-	void InitMoleculeExactCopy(AMolecule* Source);
+	//void InitMoleculeExactCopy(AMolecule* Source);
 
 	/**
 	 * Copy molecule properties from the Source molecule.  Creates new AAtom and ABond objects as copies of those in the prototype.
@@ -48,22 +57,22 @@ public:
 	 * @param NewOrientation - Initial orientation.
 	 * @param NewAngularVelocity - Initial rotational speed.
 	 */
-	void InitMoleculeCopy(
-		AMolecule* Source,
-		FVector NewPosition,
-		FVector NewVelocity,
-		FVector NewOrientation,
-		FVector NewAngularVelocity
-	);
+	//void InitMoleculeCopy(
+	//	AMolecule* Source,
+	//	FVector NewPosition,
+	//	FVector NewVelocity,
+	//	FVector NewOrientation,
+	//	FVector NewAngularVelocity
+	//);
 
 
 	/** The name of this molecule ("water" etc.). */
 	UFUNCTION()
-		FString GetName();
+		FString GetMoleculeName();
 
 	/** Chemical formula for the molecule. */
 	UFUNCTION()
-		FString GetMolecularFormula();
+		FString GetMoleculeFormula();
 
 	/** Sum of all the atom masses in the molecule. */
 	UFUNCTION()
@@ -73,15 +82,21 @@ public:
 	UFUNCTION()
 		FVector GetDipoleMoment();
 
-	/** @return location of the molecule. */
 	UFUNCTION()
-		FVector GetPosition();
+		int32 GetNumAtoms();
+
+	/** @return location of the molecule. */
+	//UFUNCTION()
+		//FVector GetPosition();
 
 	//UFUNCTION()
 	//FVector GetVelocity();
+	
+	//UFUNCTION()
+	//	FString PrintAtom(int32 AtomIndex);
 
-	UFUNCTION()
-		FVector GetOrientation();
+//	UFUNCTION()
+//		FVector GetOrientation();
 
 	UFUNCTION()
 		FVector GetAngularVelocity();
@@ -109,59 +124,64 @@ public:
 
 private:
 	/** Marker showing the location of the center of mass. */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		USphereComponent* CenterOfMassIndicator;
 
 	/** Is this a "prototype" molecule?  (If so, don't draw or interact.) */
-	UPROPERTY()
-		bool IsPrototype;
+	//UPROPERTY(VisibleAnywhere, Category = "Simulation")
+	//	bool IsPrototype;
 
-	/** Name of the molecule ("water" etc). */
-	UPROPERTY()
-		FString Name;
+	/**
+	 * Name of the molecule ("water" etc).
+	 */
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
+		FString MoleculeName;
 
 	/** Chemical formula for the molecule. */
-	UPROPERTY()
-		FString MolecularFormula;
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
+		FString MoleculeFormula;
+
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
+		int32 MoleculeIndex;
 
 	/** List of atoms in this molecule.  Atom positions are relative to molecule's origin. */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category="Simulation")
 		TArray<AAtom*> Atoms;
 
 	/** List of bonds between atoms. */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		TArray<ABond*> Bonds;
 
 	/** Sum of all the atom masses in the molecule. */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		float TotalMass;
 
 	/** Dipole moment of the molecule, in appropriate units. */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		FVector DipoleMoment;
 
 	/** List of molecules within this molecule's interaction radius. */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		TArray<AMolecule*> InteractingMolecules;
 
-	UPROPERTY()
-		FVector Position;
+	//UPROPERTY(VisibleAnywhere, Category = "Simulation")
+		//FVector Position;
 
-	UPROPERTY()
-		FVector Orientation;
+//	UPROPERTY(VisibleAnywhere, Category = "Simulation")
+//		FVector Orientation;
 
-	UPROPERTY()
-		FVector Velocity;
+	//UPROPERTY(VisibleAnywhere, Category = "Simulation")
+		//FVector Velocity;
 
 	/** Rate of rotation of the molecule. */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		FVector AngularVelocity;
 
 	/** Net force on the molecule (calculated by Simulation). */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		FVector NetForce;
 
 	/** Net torque on the molecule (calculated by Simulation). */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		FVector NetTorque;  // TK Maybe?  Check how Unreal does rotations.
 };

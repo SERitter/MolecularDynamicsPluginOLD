@@ -22,7 +22,9 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FColor();
 	MOLECULARDYNAMICSPLUGIN_API UClass* Z_Construct_UClass_AMolecule_NoRegister();
 	MOLECULARDYNAMICSPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FReaction();
+	ENGINE_API UClass* Z_Construct_UClass_UDataTable_NoRegister();
 	MOLECULARDYNAMICSPLUGIN_API UClass* Z_Construct_UClass_AAtom_NoRegister();
+	MOLECULARDYNAMICSPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FMoleculePrototype();
 	MOLECULARDYNAMICSPLUGIN_API UClass* Z_Construct_UClass_ASimulationCell_NoRegister();
 // End Cross Module References
 	DEFINE_FUNCTION(ASimulation::execUpdateSystemEnergy)
@@ -123,11 +125,26 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 		*(FVector*)Z_Param__Result=P_THIS->CalculateDivisionsForNumMolecules(Z_Param_NumAtoms);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(ASimulation::execLoadChemData)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->LoadChemData();
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(ASimulation::execBuildDefaultPrototypes)
 	{
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->BuildDefaultPrototypes();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(ASimulation::execAddSolvent)
+	{
+		P_GET_PROPERTY(FStrProperty,Z_Param_MoleculeName);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->AddSolvent(Z_Param_MoleculeName);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(ASimulation::execAddReaction)
@@ -444,6 +461,7 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 			{ "AddHydrogenBond", &ASimulation::execAddHydrogenBond },
 			{ "AddMolecule", &ASimulation::execAddMolecule },
 			{ "AddReaction", &ASimulation::execAddReaction },
+			{ "AddSolvent", &ASimulation::execAddSolvent },
 			{ "BuildDefaultPrototypes", &ASimulation::execBuildDefaultPrototypes },
 			{ "CalculateDivisionsForNumMolecules", &ASimulation::execCalculateDivisionsForNumMolecules },
 			{ "CalculateNetForceForMolecule", &ASimulation::execCalculateNetForceForMolecule },
@@ -482,6 +500,7 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 			{ "InitReactionData", &ASimulation::execInitReactionData },
 			{ "InitSimulationCell", &ASimulation::execInitSimulationCell },
 			{ "InitSolvent", &ASimulation::execInitSolvent },
+			{ "LoadChemData", &ASimulation::execLoadChemData },
 			{ "ProcessHBonds", &ASimulation::execProcessHBonds },
 			{ "RemoveHydrogenBond", &ASimulation::execRemoveHydrogenBond },
 			{ "RemoveMolecule", &ASimulation::execRemoveMolecule },
@@ -581,6 +600,40 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 		if (!ReturnFunction)
 		{
 			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASimulation_AddReaction_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_ASimulation_AddSolvent_Statics
+	{
+		struct Simulation_eventAddSolvent_Parms
+		{
+			FString MoleculeName;
+		};
+		static const UE4CodeGen_Private::FStrPropertyParams NewProp_MoleculeName;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UFunction_ASimulation_AddSolvent_Statics::NewProp_MoleculeName = { "MoleculeName", nullptr, (EPropertyFlags)0x0010000000000080, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(Simulation_eventAddSolvent_Parms, MoleculeName), METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ASimulation_AddSolvent_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ASimulation_AddSolvent_Statics::NewProp_MoleculeName,
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASimulation_AddSolvent_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "/** Fills the Simulation Cell with the Appropriate number of solvent molecules */" },
+		{ "ModuleRelativePath", "Public/Simulation.h" },
+		{ "ToolTip", "Fills the Simulation Cell with the Appropriate number of solvent molecules" },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASimulation_AddSolvent_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASimulation, nullptr, "AddSolvent", nullptr, nullptr, sizeof(Simulation_eventAddSolvent_Parms), Z_Construct_UFunction_ASimulation_AddSolvent_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ASimulation_AddSolvent_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASimulation_AddSolvent_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ASimulation_AddSolvent_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASimulation_AddSolvent()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASimulation_AddSolvent_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1984,6 +2037,30 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_ASimulation_LoadChemData_Statics
+	{
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UE4CodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_ASimulation_LoadChemData_Statics::Function_MetaDataParams[] = {
+		{ "Comment", "/** Load all chemical data files (.pdb format) found in the plugin's Content/ChemData folder, and use them construct prototypes for atoms and molecules.  Does nothing if no pdb files are found.  Called by InitializeSimulation. */" },
+		{ "ModuleRelativePath", "Public/Simulation.h" },
+		{ "ToolTip", "Load all chemical data files (.pdb format) found in the plugin's Content/ChemData folder, and use them construct prototypes for atoms and molecules.  Does nothing if no pdb files are found.  Called by InitializeSimulation." },
+	};
+#endif
+	const UE4CodeGen_Private::FFunctionParams Z_Construct_UFunction_ASimulation_LoadChemData_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASimulation, nullptr, "LoadChemData", nullptr, nullptr, 0, nullptr, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_ASimulation_LoadChemData_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_ASimulation_LoadChemData_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_ASimulation_LoadChemData()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UE4CodeGen_Private::ConstructUFunction(ReturnFunction, Z_Construct_UFunction_ASimulation_LoadChemData_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_ASimulation_ProcessHBonds_Statics
 	{
 #if WITH_METADATA
@@ -2378,6 +2455,10 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ActiveReactions_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_ActiveReactions;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_AtomDataTable_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_AtomDataTable;
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_Molecules_Inner;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_Molecules_MetaData[];
@@ -2394,7 +2475,7 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PrototypeAtoms_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FMapPropertyParams NewProp_PrototypeAtoms;
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_PrototypeMolecules_ValueProp;
+		static const UE4CodeGen_Private::FStructPropertyParams NewProp_PrototypeMolecules_ValueProp;
 		static const UE4CodeGen_Private::FStrPropertyParams NewProp_PrototypeMolecules_Key_KeyProp;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_PrototypeMolecules_MetaData[];
@@ -2432,6 +2513,7 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 		{ &Z_Construct_UFunction_ASimulation_AddHydrogenBond, "AddHydrogenBond" }, // 3025892348
 		{ &Z_Construct_UFunction_ASimulation_AddMolecule, "AddMolecule" }, // 1156029
 		{ &Z_Construct_UFunction_ASimulation_AddReaction, "AddReaction" }, // 2843518087
+		{ &Z_Construct_UFunction_ASimulation_AddSolvent, "AddSolvent" }, // 445714358
 		{ &Z_Construct_UFunction_ASimulation_BuildDefaultPrototypes, "BuildDefaultPrototypes" }, // 71622692
 		{ &Z_Construct_UFunction_ASimulation_CalculateDivisionsForNumMolecules, "CalculateDivisionsForNumMolecules" }, // 833374210
 		{ &Z_Construct_UFunction_ASimulation_CalculateNetForceForMolecule, "CalculateNetForceForMolecule" }, // 2104728224
@@ -2470,6 +2552,7 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 		{ &Z_Construct_UFunction_ASimulation_InitReactionData, "InitReactionData" }, // 1455922265
 		{ &Z_Construct_UFunction_ASimulation_InitSimulationCell, "InitSimulationCell" }, // 1615140046
 		{ &Z_Construct_UFunction_ASimulation_InitSolvent, "InitSolvent" }, // 1368811793
+		{ &Z_Construct_UFunction_ASimulation_LoadChemData, "LoadChemData" }, // 2854173205
 		{ &Z_Construct_UFunction_ASimulation_ProcessHBonds, "ProcessHBonds" }, // 78499772
 		{ &Z_Construct_UFunction_ASimulation_RemoveHydrogenBond, "RemoveHydrogenBond" }, // 1053075337
 		{ &Z_Construct_UFunction_ASimulation_RemoveMolecule, "RemoveMolecule" }, // 234489797
@@ -2499,6 +2582,14 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 	};
 #endif
 	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_ASimulation_Statics::NewProp_ActiveReactions = { "ActiveReactions", nullptr, (EPropertyFlags)0x0040000000000000, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASimulation, ActiveReactions), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ASimulation_Statics::NewProp_ActiveReactions_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASimulation_Statics::NewProp_ActiveReactions_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASimulation_Statics::NewProp_AtomDataTable_MetaData[] = {
+		{ "Comment", "/** Table describing each available atom. */" },
+		{ "ModuleRelativePath", "Public/Simulation.h" },
+		{ "ToolTip", "Table describing each available atom." },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASimulation_Statics::NewProp_AtomDataTable = { "AtomDataTable", nullptr, (EPropertyFlags)0x0040000000000000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASimulation, AtomDataTable), Z_Construct_UClass_UDataTable_NoRegister, METADATA_PARAMS(Z_Construct_UClass_ASimulation_Statics::NewProp_AtomDataTable_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASimulation_Statics::NewProp_AtomDataTable_MetaData)) };
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASimulation_Statics::NewProp_Molecules_Inner = { "Molecules", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_AMolecule_NoRegister, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASimulation_Statics::NewProp_Molecules_MetaData[] = {
@@ -2527,7 +2618,7 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 	};
 #endif
 	const UE4CodeGen_Private::FMapPropertyParams Z_Construct_UClass_ASimulation_Statics::NewProp_PrototypeAtoms = { "PrototypeAtoms", nullptr, (EPropertyFlags)0x0040000000000000, UE4CodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ASimulation, PrototypeAtoms), EMapPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_ASimulation_Statics::NewProp_PrototypeAtoms_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ASimulation_Statics::NewProp_PrototypeAtoms_MetaData)) };
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASimulation_Statics::NewProp_PrototypeMolecules_ValueProp = { "PrototypeMolecules", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, 1, Z_Construct_UClass_AMolecule_NoRegister, METADATA_PARAMS(nullptr, 0) };
+	const UE4CodeGen_Private::FStructPropertyParams Z_Construct_UClass_ASimulation_Statics::NewProp_PrototypeMolecules_ValueProp = { "PrototypeMolecules", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, 1, Z_Construct_UScriptStruct_FMoleculePrototype, METADATA_PARAMS(nullptr, 0) };
 	const UE4CodeGen_Private::FStrPropertyParams Z_Construct_UClass_ASimulation_Statics::NewProp_PrototypeMolecules_Key_KeyProp = { "PrototypeMolecules_Key", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASimulation_Statics::NewProp_PrototypeMolecules_MetaData[] = {
@@ -2580,6 +2671,7 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASimulation_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASimulation_Statics::NewProp_ActiveReactions_Inner,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASimulation_Statics::NewProp_ActiveReactions,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASimulation_Statics::NewProp_AtomDataTable,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASimulation_Statics::NewProp_Molecules_Inner,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASimulation_Statics::NewProp_Molecules,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASimulation_Statics::NewProp_PossibleReactions_Inner,
@@ -2623,7 +2715,7 @@ void EmptyLinkFunctionForGeneratedCodeSimulation() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ASimulation, 2637166778);
+	IMPLEMENT_CLASS(ASimulation, 310511602);
 	template<> MOLECULARDYNAMICSPLUGIN_API UClass* StaticClass<ASimulation>()
 	{
 		return ASimulation::StaticClass();

@@ -9,19 +9,85 @@ AMolecule::AMolecule()
 	CenterOfMassIndicator = CreateDefaultSubobject<USphereComponent>(TEXT("CenterOfMass"));
 
 	SetRootComponent(CenterOfMassIndicator);
-	CenterOfMassIndicator->SetHiddenInGame(false);
-	CenterOfMassIndicator->SetSphereRadius(170.f);
+	CenterOfMassIndicator->SetHiddenInGame(true);
+	CenterOfMassIndicator->SetSphereRadius(10.f);
 }
+
+void AMolecule::InitMolecule(FMoleculePrototype& Prototype, int32 Index, UDataTable* AtomDataTable)
+{
+	UE_LOG(LogTemp, Warning, TEXT("AMolecule::InitMolecule() MoleculePrototype Name:%s - Formula:%s - Density:%f - MolarMass:%f NumAtoms:%d"), *Prototype.Name, *Prototype.Formula, Prototype.Density, Prototype.MolarMass, Prototype.Atoms.Num());
+	this->MoleculeName = Prototype.Name;
+	this->MoleculeFormula = Prototype.Formula;
+	this->MoleculeIndex = Index;
+
+	UE_LOG(LogTemp, Warning, TEXT("AMolecule::InitMolecule(%s) Spawning and Initializing %d Atoms."),*Prototype.Name, Prototype.Atoms.Num());
+
+	for (int32 i = 0; i < Prototype.Atoms.Num(); i++)
+	{
+		//Prototype.Atoms[i]
+		UE_LOG(LogTemp, Warning, TEXT("AMolecule::InitMolecule(%s) Atom[%d] Symbol:%s Position:%s"), *Prototype.Name, i, *Prototype.Atoms[i].Symbol, *Prototype.Atoms[i].Position.ToString());
+
+		FString NumberedName = FString(TEXT("Molecule-"));
+		NumberedName += FString::FromInt(Index);
+		NumberedName += FString(TEXT("-"));	
+		NumberedName += *Prototype.Atoms[i].Symbol;
+		NumberedName += FString::FromInt(Atoms.Num());
+		
+		FActorSpawnParameters SpawnInfo;
+		SpawnInfo.Owner = this;
+		SpawnInfo.Name = *NumberedName;
+		AAtom* SpawnedAtom = GetWorld()->SpawnActor<AAtom>(GetActorLocation(), GetActorRotation(), SpawnInfo);
+		SpawnedAtom->AttachToActor(this, FAttachmentTransformRules::SnapToTargetIncludingScale);
+		SpawnedAtom->SetActorLabel(*NumberedName);
+		SpawnedAtom->SetActorRelativeLocation(Prototype.Atoms[i].Position);
+
+		UE_LOG(LogTemp, Warning, TEXT("AMolecule::InitMolecule() Attempting to access AtomData Table: %s"), *Prototype.Atoms[i].Symbol);
+		FName Symbol = FName(Prototype.Atoms[i].Symbol);
+		FAtomData* AtomData = AtomDataTable->FindRow<FAtomData>(Symbol, "");
+		UE_LOG(LogTemp, Warning, TEXT("AMolecule::InitMolecule() ***ATOM*** m=%f, r=%f"), AtomData->Mass, AtomData->Radius);
+		SpawnedAtom->InitAtom(AtomData, Prototype.Atoms[i].Symbol, i);
+
+		Atoms.Add(SpawnedAtom);
+	}
+}
+
+/*
+void AMolecule::InitAtoms()
+{
+	UE_LOG(LogTemp, Warning, TEXT("AMolecule::InitAtoms() Attaching %d Atoms to %s:%s:CoM."), this->Atoms.Num(),*this->GetActorLabel(), *this->GetName());
+
+	//TArray<AAtom*> SpawnedAtoms;
+	
+	//for (int32 i = 0; i < this->Atoms.Num(); i++)
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("%d - Attempting to spawn and attach %s to %s:%s at position %s"), i, *this->Atoms  [i]->GetName(), *this->GetActorLabel(), *this->GetName(), *this->Atoms[i]->GetPosition().ToString());
+		//FActorSpawnParameters SpawnInfo;
+		//SpawnInfo.Owner = this;
+		//SpawnInfo.Name = *this->Atoms[i]->GetName();
+		//AAtom* SpawnedAtom = GetWorld()->SpawnActor<AAtom>(GetActorLocation(), GetActorRotation(), SpawnInfo);
+		//SpawnedAtom->AttachToActor(this, FAttachmentTransformRules::SnapToTargetIncludingScale);
+		//SpawnedAtom->SetActorRelativeLocation(this->Atoms[i]->GetPosition());
+		//SpawnedAtom->InitAtomExactCopy(this->Atoms[i]);
+		//SpawnedAtoms.Add(SpawnedAtom);
+	}
+
+	//Atoms = SpawnedAtoms;
+	//UE_LOG(LogTemp, Warning, TEXT("Completed Spawn and attachment"));
+}
+*/
 
 // AMolecule::AMolecule(FString Name, FString MolecularFormula, TArray<AAtom*> Atoms, TArray<ABond*> Bonds,
 // 	FVector DipoleMoment, FVector Position, FVector Velocity, FVector Orientation, FVector AngularVelocity)
 // {
 // }
 
+/*
 void AMolecule::InitMoleculePrototype(FString NewName, FString NewMolecularFormula, TArray<AAtom*> NewAtoms, TArray<ABond*> NewBonds, FVector NewDipoleMoment)
 {
+	UE_LOG(LogTemp, Warning, TEXT("AMolecule::InitMoleculePrototype() Called."));
 	int32 i;
 
+	//this->Rename(*NewName);
 	this->Name = NewName;
 	this->MolecularFormula = NewMolecularFormula;
 	this->DipoleMoment = NewDipoleMoment;
@@ -51,6 +117,9 @@ void AMolecule::InitMoleculePrototype(FString NewName, FString NewMolecularFormu
 		this->Atoms[i]->GetPosition() -= cm;
 	}
 
+	//Now we need to attach the atoms to the molecule
+	InitAtoms();
+	
 	// TODO: Set the "Actor" locations for the atoms to put the visual representations
 	// at the right places.
 	// (Something about SetActorLocation...)
@@ -59,13 +128,17 @@ void AMolecule::InitMoleculePrototype(FString NewName, FString NewMolecularFormu
 	// TODO: Draw the bonds, now that the atom locations are set up in the CM coordinates.
 	// NOTE: Might not have to do this for prototypes!  (In which case it would go in the next constsructor, below.)
 }
+*/
 
+/*
 void AMolecule::InitMoleculeExactCopy(AMolecule* Source)
 {
 	UE_LOG(LogTemp, Warning, TEXT("AMolecule::InitMoleculeExactCopy() Called."));
 	this->InitMoleculeCopy(Source, Source->GetPosition(), Source->GetVelocity(), Source->GetOrientation(), Source->GetAngularVelocity());
 }
+*/
 
+/*
 void AMolecule::InitMoleculeCopy(AMolecule* Source, FVector NewPosition, FVector NewVelocity, FVector NewOrientation, FVector NewAngularVelocity)
 {
 	int32 i, Index;
@@ -79,6 +152,7 @@ void AMolecule::InitMoleculeCopy(AMolecule* Source, FVector NewPosition, FVector
 
 	// Copy properties from the source molecule.
 	this->Name = Source->Name;
+	//this->Rename(*Source->GetName());
 	this->MolecularFormula = Source->MolecularFormula;
 	this->DipoleMoment = Source->DipoleMoment;
 
@@ -117,15 +191,16 @@ void AMolecule::InitMoleculeCopy(AMolecule* Source, FVector NewPosition, FVector
 	this->Orientation = NewOrientation;
 	this->AngularVelocity = NewAngularVelocity;
 }
+*/
 
-FString AMolecule::GetName()
+FString AMolecule::GetMoleculeName()
 {
-	return this->Name;
+	return this->MoleculeName;
 }
 
-FString AMolecule::GetMolecularFormula()
+FString AMolecule::GetMoleculeFormula()
 {
-	return this->MolecularFormula;
+	return this->MoleculeFormula;
 }
 
 float AMolecule::GetTotalMass()
@@ -138,10 +213,20 @@ FVector AMolecule::GetDipoleMoment()
 	return this->DipoleMoment;
 }
 
-FVector AMolecule::GetPosition()
+int32 AMolecule::GetNumAtoms()
 {
-	return this->Position;
+	return Atoms.Num();
 }
+
+//FVector AMolecule::GetPosition()
+//{
+//	return this->Position;
+//}
+
+//FString AMolecule::PrintAtom(int32 AtomIndex)
+//{
+//	return (TEXT("Name: %s - Position: %s"), Atoms[AtomIndex]->GetName(), Atoms[AtomIndex]->GetPosition().ToString());
+//}
 
 /*
 FVector AMolecule::GetVelocity()
@@ -150,15 +235,17 @@ FVector AMolecule::GetVelocity()
 }
 */
 
-FVector AMolecule::GetOrientation()
-{
-	return this->Orientation;
-}
+//FVector AMolecule::GetOrientation()
+//{
+//	return this->Orientation;
+//}
 
 FVector AMolecule::GetAngularVelocity()
 {
 	return this->AngularVelocity;
 }
+
+
 
 void AMolecule::SetInteractingMolecules(TArray<AMolecule*> MoleculeList)
 {

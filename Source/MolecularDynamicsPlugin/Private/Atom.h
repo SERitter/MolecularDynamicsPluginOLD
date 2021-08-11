@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "AtomData.h"
 #include "Components/StaticMeshComponent.h"
+#include "Runtime/CoreUObject/Public/UObject/SoftObjectPtr.h"
 #include "Materials/Material.h"
 #include "Atom.generated.h"
 
@@ -18,6 +20,8 @@ public:
 	 */
 	AAtom();
 
+	void InitAtom(FAtomData* AtomData, FString AtomSymbol, int32 Index);
+
 	/**
 	 * Initializes an atom prototype object.  The prototype has position, velocity, etc set to zero.
 	 * The AMBER 94 type lets us have atoms of the same element in different bond conditions, which will have different Van Der Waals parameters etc.
@@ -30,7 +34,6 @@ public:
 	 * @param NewCovalentRadius - Covalent Radius of the atom, in Angstroms
 	 * @param NewVanDerWaalsRadius - The AMBER94 van der Waals radius of the atom, in Angstroms
 	 * @param NewVanDerWaalsMagnitude - The AMBER94 van der waals attraction magnitude of the Atom, in kCal/mol
-	*/
 	UFUNCTION()
 		void InitAtomPrototype(
 			FString NewName,
@@ -42,22 +45,23 @@ public:
 			float NewCovalentRadius,
 			float NewVanDerWaalsRadius,
 			float NewVanDerWaalsMagnitude);
+	*/
 
 	/**
 	 * Makes a new atom with the same properties as the source, at the new
 	 * position.
 	 * @param Source - The prototype to copy properties from.
 	 * @param NewPosition - The position of the atom in the molecule, in angstroms.
-	 */
 	UFUNCTION()
 		void InitAtomCopy(AAtom* Source, FVector NewPosition);
+	 */
 
 	/**
 	 * Makes a new atom with the same properties as the source, at the same position.
 	 * @param Source - The prototype to copy properties from.
-	 */
 	UFUNCTION()
 		void InitAtomExactCopy(AAtom* Source);
+	 */
 
 protected:
 	// Called when the game starts or when spawned
@@ -106,8 +110,8 @@ public:
 	/**
 	 * @return the 3D coordinates of the atom within the molecule.
 	 */
-	UFUNCTION()
-		FVector GetPosition();
+	//UFUNCTION()
+	//	FVector GetPosition();
 
 	/**
 	 * Record this atom's index in its molecule's atom array, to simplify lookups later.
@@ -141,58 +145,76 @@ public:
 
 	/** Get the atom's current material. */
 	UFUNCTION()
-		UMaterial* GetMaterial();
+		UMaterialInterface* GetMaterial();
 
 private:
+	/** Atomic Number of the atom */
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
+		int32 AtomicNumber;
+	
 	/** Full English name of the atom*/
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		FString Name;
 
 	/** AMBER 94 type of atom*/
-	UPROPERTY()
-		FString Type;
+	//UPROPERTY(VisibleAnywhere, Category = "Simulation")
+	//	FString Type;
 
 	/** Atomic Symbol*/
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		FString Symbol;
 
 	/** Stores a representation of the bond for use in engine. */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		UStaticMeshComponent* AtomRepresentation;
 
 	/** Stores the material for the static mesh of the representation. */
-	UPROPERTY()
-		UMaterial* AtomMaterial;
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
+		UMaterialInterface* AtomMaterial;
 
 	/** Stores the desired Color for the Material for the representation. */
-	UPROPERTY()
-		FLinearColor Color;
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
+		FColor Color;
 
 	/** Covalent Radius of the atom, in Angstroms*/
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		float CovalentRadius;
 
 	/** Charge of the atom, in multiples of fundemental charges */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		int32 Charge;
 
+	/** Stores the desired HexColor for the Material for the representation. */
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
+		FString HexColor;
+	
 	/** Mass of the atom, in atomic mass units (or g/mol). */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		float Mass;
 
+	//UPROPERTY(VisibleAnywhere, Category = "Simulation")
+	//UMaterialInterface* MaterialBase;
+
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
+	UMaterialInstanceDynamic* DynamicMaterial;
+	
 	/** Charge of the atom, in multiples of fundemental charges */
+	//UPROPERTY()
+	//	FVector Position;
+
 	UPROPERTY()
-		FVector Position;
+		USceneComponent* Root;
 
 	/** The AMBER94 van der Waals radius of the atom, in Angstroms */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		float VanDerWaalsRadius;
 
 	/** The AMBER94 van der waals attraction magnitude of the Atom, in kCal/mol */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		float VanDerWaalsMagnitude;
 
 	/** This atom's index in the molecule's atom array.  Simplifies lookups for bonds. */
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = "Simulation")
 		int32 AtomArrayIndex = -1;
+
 };

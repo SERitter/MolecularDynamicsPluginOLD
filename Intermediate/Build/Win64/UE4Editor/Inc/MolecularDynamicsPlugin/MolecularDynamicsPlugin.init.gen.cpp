@@ -21,8 +21,8 @@ void EmptyLinkFunctionForGeneratedCodeMolecularDynamicsPlugin_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x86D93822,
-				0x3FD3D5FB,
+				0x76E67FC8,
+				0xE51169CE,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UE4CodeGen_Private::ConstructUPackage(ReturnPackage, PackageParams);

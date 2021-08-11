@@ -38,6 +38,7 @@ public class MolecularDynamicsPlugin : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
+				"Projects",
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
@@ -49,5 +50,8 @@ public class MolecularDynamicsPlugin : ModuleRules
 				// ... add any modules that your module loads dynamically here ...
 			}
 			);
+
+		// Tell the packager to include the chemical data files.
+		RuntimeDependencies.Add("MolecularDynamicsPlugin/Content/ChemData/...");
 	}
 }

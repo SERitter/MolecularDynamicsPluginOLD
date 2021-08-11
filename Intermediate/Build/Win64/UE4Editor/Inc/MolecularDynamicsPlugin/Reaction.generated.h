@@ -13,7 +13,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define MOLECULARDYNAMICSPLUGIN_Reaction_generated_h
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Reaction_h_13_GENERATED_BODY \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Reaction_h_13_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FReaction_Statics; \
 	MOLECULARDYNAMICSPLUGIN_API static class UScriptStruct* StaticStruct();
 
@@ -21,7 +21,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 template<> MOLECULARDYNAMICSPLUGIN_API UScriptStruct* StaticStruct<struct FReaction>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Reaction_h
+#define CURRENT_FILE_ID UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Private_Reaction_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

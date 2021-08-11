@@ -6,9 +6,12 @@
 /NAME:"UE4Editor-MolecularDynamicsPlugin-0011.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"C:\GitHub Repos\DynamicsPlugin\Intermediate\Build\Win64\DynamicsPluginEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
-"C:\GitHub Repos\DynamicsPlugin\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Module.MolecularDynamicsPlugin.cpp.obj"
-"C:\GitHub Repos\DynamicsPlugin\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Module.MolecularDynamicsPlugin.gen.cpp.obj"
-"C:\GitHub Repos\DynamicsPlugin\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Default.rc2.res"
-/OUT:"C:\GitHub Repos\DynamicsPlugin\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\UE4Editor-MolecularDynamicsPlugin-0011.lib"
+"C:\GitHub Repos\UnrealDynamics\Intermediate\Build\Win64\UnrealDynamicsEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"C:\GitHub Repos\UnrealDynamics\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Atom.cpp.obj"
+"C:\GitHub Repos\UnrealDynamics\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Molecule.cpp.obj"
+"C:\GitHub Repos\UnrealDynamics\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Simulation.cpp.obj"
+"C:\GitHub Repos\UnrealDynamics\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Module.MolecularDynamicsPlugin.cpp.obj"
+"C:\GitHub Repos\UnrealDynamics\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Module.MolecularDynamicsPlugin.gen.cpp.obj"
+"C:\GitHub Repos\UnrealDynamics\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\Default.rc2.res"
+/OUT:"C:\GitHub Repos\UnrealDynamics\Plugins\MolecularDynamicsPlugin\Intermediate\Build\Win64\UE4Editor\Development\MolecularDynamicsPlugin\UE4Editor-MolecularDynamicsPlugin-0011.lib"
 /INCLUDE:IMPLEMENT_MODULE_MolecularDynamicsPlugin

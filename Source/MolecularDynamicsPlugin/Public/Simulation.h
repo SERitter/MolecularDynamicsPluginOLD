@@ -17,17 +17,23 @@
 //		Remover Functions
 //		Update Functions
 //	Private Variables
+//	Public Variables
 //********************************************************************
 
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Interfaces/IPluginManager.h"
 #include "Reaction.h"
 #include "Molecule.h"
+#include "AtomPrototype.h"
+#include "BondPrototype.h"
 #include "Atom.h"
 #include "Bond.h"
 #include "MoleculeConcentration.h"
 #include "SimulationCell.h"
+#include "AtomData.h"
+#include "MoleculePrototype.h"
 #include "Simulation.generated.h"
 
 UCLASS()
@@ -361,6 +367,10 @@ private:
 	UFUNCTION()
 		void AddReaction();
 
+	/** Fills the Simulation Cell with the Appropriate number of solvent molecules */
+	UFUNCTION()
+		void AddSolvent(FString MoleculeName);
+
 	//********************************************************************
 	// Other Functions
 	//********************************************************************
@@ -368,6 +378,10 @@ private:
 	/** Prepares a (hard-coded) default set of atoms and molecules.  This is called by InitializeSimulation if the prototypes have not yet been built (e.g. loaded from files). */
 	UFUNCTION()
 		void BuildDefaultPrototypes();
+
+	/** Load all chemical data files (.pdb format) found in the plugin's Content/ChemData folder, and use them construct prototypes for atoms and molecules.  Does nothing if no pdb files are found.  Called by InitializeSimulation. */
+	UFUNCTION()
+		void LoadChemData();
 
 	UFUNCTION()
 		FVector CalculateDivisionsForNumMolecules(int32 NumAtoms);
@@ -433,6 +447,13 @@ private:
 	// Private Variables
 	//********************************************************************
 private:
+	/** Name of this plugin; needed for paths. (If there's a built-in way to get this, please change the code!) */
+	const FString PLUGIN = TEXT("MolecularDynamicsPlugin");
+	//const FString CONTENTDIR = IPluginManager::Get().FindPlugin(PLUGIN)->GetContentDir();
+
+	/** Path to the plugin's Content directory, where data files are stored. */
+	FString ContentDir;
+
 	/** An array of active reaction objects*/
 	UPROPERTY()
 		TArray<FReaction> ActiveReactions;
@@ -445,6 +466,10 @@ private:
 	/** Sphere in space for each molecule in the simulation to interact, in Angstroms.  */
 	//UPROPERTY()
 	//float InteractionSphereRadius;
+
+	/** Table describing each available atom. */
+	UPROPERTY()
+		UDataTable *AtomDataTable;
 
 	/** Array of molecule objects in the simulation*/
 	UPROPERTY()
@@ -460,8 +485,8 @@ private:
 
 	/** An array of prototype molecule objects. Keys are molecule names. */
 	UPROPERTY()
-		TMap<FString, AMolecule*> PrototypeMolecules;
-
+		TMap<FString, FMoleculePrototype> PrototypeMolecules;
+	
 	/** SimulationCell object*/
 	UPROPERTY()
 		ASimulationCell* SimulationCell;

@@ -17,8 +17,8 @@ struct FMoleculeConcentration;
 #endif
 #define MOLECULARDYNAMICSPLUGIN_Simulation_generated_h
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_SPARSE_DATA
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_RPC_WRAPPERS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_SPARSE_DATA
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execUpdateSystemEnergy); \
 	DECLARE_FUNCTION(execUpdateForcesOnMolecules); \
@@ -33,7 +33,9 @@ struct FMoleculeConcentration;
 	DECLARE_FUNCTION(execCalculateNumberOfSolventMolecules); \
 	DECLARE_FUNCTION(execCalculateNetForceForMolecule); \
 	DECLARE_FUNCTION(execCalculateDivisionsForNumMolecules); \
+	DECLARE_FUNCTION(execLoadChemData); \
 	DECLARE_FUNCTION(execBuildDefaultPrototypes); \
+	DECLARE_FUNCTION(execAddSolvent); \
 	DECLARE_FUNCTION(execAddReaction); \
 	DECLARE_FUNCTION(execAddMolecule); \
 	DECLARE_FUNCTION(execAddHydrogenBond); \
@@ -76,7 +78,7 @@ struct FMoleculeConcentration;
 	DECLARE_FUNCTION(execGetMoleculeCounts);
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_RPC_WRAPPERS_NO_PURE_DECLS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execUpdateSystemEnergy); \
 	DECLARE_FUNCTION(execUpdateForcesOnMolecules); \
@@ -91,7 +93,9 @@ struct FMoleculeConcentration;
 	DECLARE_FUNCTION(execCalculateNumberOfSolventMolecules); \
 	DECLARE_FUNCTION(execCalculateNetForceForMolecule); \
 	DECLARE_FUNCTION(execCalculateDivisionsForNumMolecules); \
+	DECLARE_FUNCTION(execLoadChemData); \
 	DECLARE_FUNCTION(execBuildDefaultPrototypes); \
+	DECLARE_FUNCTION(execAddSolvent); \
 	DECLARE_FUNCTION(execAddReaction); \
 	DECLARE_FUNCTION(execAddMolecule); \
 	DECLARE_FUNCTION(execAddHydrogenBond); \
@@ -134,7 +138,7 @@ struct FMoleculeConcentration;
 	DECLARE_FUNCTION(execGetMoleculeCounts);
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_INCLASS_NO_PURE_DECLS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASimulation(); \
 	friend struct Z_Construct_UClass_ASimulation_Statics; \
@@ -143,7 +147,7 @@ public: \
 	DECLARE_SERIALIZER(ASimulation)
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_INCLASS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_INCLASS \
 private: \
 	static void StaticRegisterNativesASimulation(); \
 	friend struct Z_Construct_UClass_ASimulation_Statics; \
@@ -152,7 +156,7 @@ public: \
 	DECLARE_SERIALIZER(ASimulation)
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_STANDARD_CONSTRUCTORS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ASimulation(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ASimulation) \
@@ -165,7 +169,7 @@ private: \
 public:
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_ENHANCED_CONSTRUCTORS \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ASimulation(ASimulation&&); \
@@ -176,8 +180,9 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASimulation); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ASimulation)
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_PRIVATE_PROPERTY_OFFSET \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__ActiveReactions() { return STRUCT_OFFSET(ASimulation, ActiveReactions); } \
+	FORCEINLINE static uint32 __PPO__AtomDataTable() { return STRUCT_OFFSET(ASimulation, AtomDataTable); } \
 	FORCEINLINE static uint32 __PPO__Molecules() { return STRUCT_OFFSET(ASimulation, Molecules); } \
 	FORCEINLINE static uint32 __PPO__PossibleReactions() { return STRUCT_OFFSET(ASimulation, PossibleReactions); } \
 	FORCEINLINE static uint32 __PPO__PrototypeAtoms() { return STRUCT_OFFSET(ASimulation, PrototypeAtoms); } \
@@ -189,27 +194,27 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ASimulation); \
 	FORCEINLINE static uint32 __PPO__TimeScale() { return STRUCT_OFFSET(ASimulation, TimeScale); }
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_33_PROLOG
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_GENERATED_BODY_LEGACY \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_39_PROLOG
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_PRIVATE_PROPERTY_OFFSET \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_SPARSE_DATA \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_RPC_WRAPPERS \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_INCLASS \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_STANDARD_CONSTRUCTORS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_PRIVATE_PROPERTY_OFFSET \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_SPARSE_DATA \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_RPC_WRAPPERS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_INCLASS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_GENERATED_BODY \
+#define UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_PRIVATE_PROPERTY_OFFSET \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_SPARSE_DATA \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_RPC_WRAPPERS_NO_PURE_DECLS \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_INCLASS_NO_PURE_DECLS \
-	DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_51_ENHANCED_CONSTRUCTORS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_PRIVATE_PROPERTY_OFFSET \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_SPARSE_DATA \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_RPC_WRAPPERS_NO_PURE_DECLS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_INCLASS_NO_PURE_DECLS \
+	UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h_57_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -217,7 +222,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> MOLECULARDYNAMICSPLUGIN_API UClass* StaticClass<class ASimulation>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID DynamicsPlugin_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h
+#define CURRENT_FILE_ID UnrealDynamics_Plugins_MolecularDynamicsPlugin_Source_MolecularDynamicsPlugin_Public_Simulation_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
